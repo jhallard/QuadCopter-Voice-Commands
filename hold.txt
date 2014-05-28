@@ -1,0 +1,11 @@
+void VoiceCommand::startVoiceCommand()
+{
+	char hold = _getch();
+	if(hold == INPUTKEY )
+	{
+		ad_start_rec(audioRecorder);
+		ad_read(audioRecorder, buffer, BUFFERSIZE);
+		while(_getch() != INPUTKEY && audioRecorder->recording);
+		ad_stop_rec(audioRecorder);
+	}
+}
